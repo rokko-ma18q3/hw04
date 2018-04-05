@@ -1,0 +1,148 @@
+---
+title: 'hw04: Sketching graphs'
+author: | 
+  | Kenji Sato
+  | Kobe University
+  | mail@kenjisato.jp
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    includes:
+      in_header: asset/latex/custom.sty
+    keep_tex: no
+    latex_engine: pdflatex
+    number_sections: yes
+    template: null
+    toc: no
+  bookdown::html_document2: default
+documentclass: scrartcl
+---
+
+# Overview
+
+Think of a situation where you write your thesis, a paper, slides, or weekly 
+reports to your advisor or future you. You may have an idea for the proof 
+of your conjecture. You may want to discuss why the mechanism you describe 
+in the article/note/journal works as you expect. 
+
+You can demonstrate your idea most unambiguously with mathematical expressions. 
+To reveal the economic intuition behind your theory, you must 
+elaborate on the mechanism in words. Often times, drawing a graphical sketch 
+of your theory is the most effective way to convey your idea to the reader.
+
+Since sketching graphs is an important skill for academic communication, 
+I would recommend all of you to build your own routine to draw nice graphs 
+on a computer. 
+
+## Purpose {-}
+
+To learn 
+
+* how to draw a sketch of a graph on computers and 
+* how to embed it in an R Markdown document.
+
+Here, in this `problem.pdf`, I show you my routine. Imitate and extend it 
+if you don't have yours already or if you think yours is not as good as mine. 
+
+If you think you have a better way, you don't need to learn from me. Just 
+follow your routine to create a picture file and embed it in the document 
+with the function I show you later in this document. 
+
+## Instructions {-}
+
+In this assignment, you will
+
+- clone the assignment repository and make a working branch (eg. `solution` branch);
+- draw graphs and put the file in `figure` folder (see Section \@ref(problem)); 
+- write the solutions in `solution.Rmd`; 
+- commit `solution.Rmd` and `solution.pdf` together with the picture file(s); and 
+- open a Pull Request.
+ 
+# My routine
+
+## Draw {-}
+
+I use Keynote, a presentation application for Mac, to draw graphs. 
+If you work on Windows, PowerPoint is an alternative. As a sample I 
+attach the presentation file I used for a class. Uncompress 
+`asset/images/solow_model.key.zip` and open `solow_model.key` with 
+Keynote for Mac to see how I draw the graphs and set fonts for mathematical 
+expressions.^[My favorite choice is Palatino fonts in bold italics, which 
+go well with `mathpazo` package of LaTeX. To embed more complex mathematical 
+expressions in a presentation file, I use LaTeXit, which converts a LaTeX 
+code snippet into an image of the rendered math expressions.] 
+
+
+## Export {-}
+
+Export the presentation file to a single PDF or multiple image files 
+(JPEG or PNG). Put them somewhere close to the R Markdown file.
+I usually put the original file and the exported together under a folder
+named `figures` or `images`.
+
+The resulting PDF file is stored in `asset/images/solow_model.pdf` as 
+a sample.
+
+## Embed {-}
+
+Now that we have the graphs, let's move to RStudio and to an R Markdown file.
+
+Set global knit options at the beginning of the document with a code chunk similar to below. This set the default figure width to 14cm and default alignment to center. 
+
+Your `solution.Rmd` already has this chunk.
+
+    `r ''````{r, include=FALSE}
+    knitr::opts_chunk$set(fig.align = 'center', out.width = "12cm")
+    ```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center', out.width = "12cm")
+```
+
+To embed the first page of the PDF, You can use a code chunk as follows: 
+    
+    `r ''````{r solow1, fig.cap="(ref:solow1)", out.extra="page=1", echo=FALSE}
+    knitr::include_graphics("asset/images/solow_model.pdf")
+    ```
+
+This R code chunk produces Figure \@ref(fig:solow1). I used cross-reference command `\@ref(fig:solow1)` here. Note that the chunk label (`solow1`) with prefix `fig:` is used as a pointer to the figure. 
+
+Please have a look at the source file (`problem.Rmd`) to see how I take advantage of 
+text reference for the caption (`fig.cap` option).^[For more detail, see  https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#text-references]
+This feature comes in handy when the caption is long.
+
+The chunk option, `out.extra="page=1"`, is a special option used when including a page 
+from a multiple-page PDF file. `out.extra="page=n"` includes n-th page of the PDF 
+file specified as the argument to `knitr::include_graphics()` function.
+
+```{r solow1, fig.cap="(ref:solow1)", out.extra="page=1",echo=FALSE}
+knitr::include_graphics("asset/images/solow_model.pdf")
+```
+
+(ref:solow1) Solow Model
+
+
+```{r solow2, fig.cap="(ref:solow2)", out.extra="page=7",echo=FALSE}
+knitr::include_graphics("asset/images/solow_model.pdf")
+```
+
+(ref:solow2) Increase in $s$
+
+
+# Problem
+
+Produce a figure similar to Figure \@ref(fig:solow2) but for the cases of
+
+1. a sudden decrease of $s$; and 
+1. a sudden increase of $n$.
+
+Put the file in `figures`. In the body of the document, explain what happens to $k$ after the parameter change. 
+
+The document must have all of the following.
+
+* Correct graphs
+* Reasonable captions attached to them and 
+* At least one reference to each Figure
+
+

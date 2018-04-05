@@ -1,0 +1,35 @@
+---
+title: 'hw04: Sketching graphs'
+author: | 
+  | Your Name
+  | Affiliation
+date: '`r format(Sys.time(), "%Y/%m/%d")`'
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    includes:
+      in_header: asset/latex/custom.sty
+    keep_tex: no
+    latex_engine: pdflatex
+    number_sections: yes
+    template: null
+    toc: no
+  bookdown::html_document2: default
+documentclass: scrartcl
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center', out.width = "12cm")
+```
+
+# Decrease in the saving rate
+
+
+
+
+
+# Increase in the population growth rate
+
+
+
+
