@@ -1,7 +1,6 @@
-# hw04: Macroeconomics 18Q1
+# hw04: Macroeconomics 18Q3
 
-Publish: 2018-04-06 
-Suggested Deadline: 2018-05-11
+Suggested Deadline: 2018-11-06
 
 ## Goal
 
